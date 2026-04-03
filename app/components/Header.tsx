@@ -17,7 +17,7 @@ export default function Header() {
       <div className="relative isolate overflow-hidden bg-white py-24 sm:py-20 shadow-lg">
         <div className="mx-auto max-w-7xl px-3 lg:px-8">
           <div className="mx-auto max-w-3xl lg:mx-0">
-            <h2 className="text-5xl font-semibold tracking-tight text-gray-800 sm:text-7xl">
+            <h2 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
               Curriculum Vitae
             </h2>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
