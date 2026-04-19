@@ -3,7 +3,7 @@ import { educationData } from "../data/EducationData";
 
 export default function Education() {
   return (
-    <section className="w-full pt-20 pb-10 ">
+    <section className="w-full pt-30 pb-20 ">
       <div className="w-full px-30 pt-0">
         <div className="grid grid-cols-2 gap-12 items-start">
           <div>

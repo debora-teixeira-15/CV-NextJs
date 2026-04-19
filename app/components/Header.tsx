@@ -65,10 +65,8 @@ export default function Header() {
                 <dd className="text-4xl font-semibold tracking-tight text-gray-800">Masters</dd>
               </div>
               <div className="flex flex-col-reverse gap-1">
-                <dt className="text-base/7 text-gray-600">Field of study</dt>
-                <dd className="text-4xl font-semibold tracking-tight text-gray-800">
-                  Computer Science
-                </dd>
+                <dt className="text-base/7 text-gray-600">Field of work</dt>
+                <dd className="text-4xl font-semibold tracking-tight text-gray-800">Frontend</dd>
               </div>
             </dl>
           </div>

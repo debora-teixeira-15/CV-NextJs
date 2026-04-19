@@ -1,15 +1,19 @@
 import Education from "./components/Education";
 import Header from "./components/Header";
 import WorkExperience from "./components/WorkExperience";
+import Certifications from "./components/Certifications";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full bg-stone-50 font-sans">
-      <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-between px-1 sm:items-start">
+    <div className="relative">
+      <div className="sticky top-0 h-[70vh] bg-stone-50 font-sans">
+        <Header />
+      </div>
+      <div className="relative bg-stone-50 font-sans">
         <Education />
         <WorkExperience />
-      </main>
+        <Certifications />
+      </div>
     </div>
   );
 }
