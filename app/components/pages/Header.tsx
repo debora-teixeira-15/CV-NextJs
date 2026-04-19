@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Counter from "./Counter";
+import Counter from "../general/Counter";
 import SEO from "./SEO";
 
 export default function Header() {
@@ -39,7 +39,7 @@ export default function Header() {
           transform: `scale(${0.99 + opacity * 0.01})`,
           backgroundColor: `rgba(255, 255, 255, ${1 - colorBlend * 0.3})`,
         }}
-        className="relative isolate overflow-hidden py-24 sm:py-20 shadow-lg transition-opacity duration-100"
+        className="relative isolate overflow-hidden py-24 sm:py-20 transition-opacity duration-100"
       >
         <div className="mx-auto max-w-7xl px-3 lg:px-8">
           <div className="mx-auto max-w-3xl lg:mx-0">

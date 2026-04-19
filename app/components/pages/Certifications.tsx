@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const CertificationModal = dynamic(() => import("./general/CertificationModal"), { ssr: false });
+const CertificationModal = dynamic(() => import("../general/CertificationModal"), { ssr: false });
 
 export default function Certifications() {
   return (

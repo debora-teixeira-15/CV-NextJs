@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { experiences } from "../data/WorkExperienceData";
+import { experiences } from "../../data/WorkExperienceData";
 
 export default function WorkExperience() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,7 +53,7 @@ export default function WorkExperience() {
         {Object.values(experiences)[activeIndex].date.match(/\d{4}/)?.[0]}
       </span>
 
-      <p className="text-4xl font-light tracking-[0.3em] text-white/80 px-20 pb-10">
+      <p className="text-3xl font-light tracking-[0.3em] text-white/80 px-20 pb-10">
         WORK EXPERIENCE
       </p>
 

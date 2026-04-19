@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { educationData } from "../data/EducationData";
+import { educationData } from "../../data/EducationData";
 
 export default function Education() {
   return (
