@@ -19,7 +19,7 @@ export default function Education() {
                       <h3 className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
                         {item.title}
                       </h3>
-                      <p className="italic text-gray-600">{item.institution}</p>
+                      <p className="italic text-gray-600 whitespace-nowrap">{item.institution}</p>
                       <p className="text-sm text-gray-400 mt-2 mb-10">{item.date}</p>
                     </div>
                   </div>
