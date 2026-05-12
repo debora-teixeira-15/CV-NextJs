@@ -2,6 +2,7 @@ import Education from "./components/pages/Education";
 import Header from "./components/pages/Header";
 import WorkExperience from "./components/pages/WorkExperience";
 import Certifications from "./components/pages/Certifications";
+import TechStack from "./components/pages/TechStack";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           <Education />
           <Certifications />
         </div>
+        <TechStack />
       </div>
     </div>
   );
