@@ -6,8 +6,8 @@ const CertificationModal = dynamic(() => import("../general/CertificationModal")
 
 export default function Certifications() {
   return (
-    <section className="w-full  pb-20">
-      <div className="w-full px-30">
+    <section className="w-full px-25">
+      <div className="w-full">
         <div className="col-span-3">
           <p className="text-lg tracking-[0.3em] text-gray-500 shrink-0">CERTIFICATIONS</p>
           <div className="flex flex-1 gap-10 mt-5">

@@ -11,7 +11,7 @@ export default function Home() {
       </div>
       <div className="relative bg-stone-50 font-sans">
         <WorkExperience />
-        <div className="flex w-full justify-center pt-20 gap-40">
+        <div className="flex w-full justify-center pt-20 pb-20 gap-40">
           <Education />
           <Certifications />
         </div>

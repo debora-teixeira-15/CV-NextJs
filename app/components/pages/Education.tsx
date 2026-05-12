@@ -2,8 +2,8 @@ import { educationData } from "../../data/EducationData";
 
 export default function Education() {
   return (
-    <section className="w-full pb-20 ">
-      <div className="w-full px-30 pt-0">
+    <section className="w-full px-25  ">
+      <div className="w-full pt-0">
         <div className="grid grid-cols-2 gap-12 items-start">
           <div className="grid grid-cols-4 gap-10">
             <div className="col-span-3">
