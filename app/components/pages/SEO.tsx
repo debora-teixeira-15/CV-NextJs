@@ -3,8 +3,6 @@ import Head from "next/head";
 interface SEOProps {
   title: string;
   description: string;
-  image?: string;
-  url?: string;
 }
 
 export default function SEO({ title, description }: SEOProps) {

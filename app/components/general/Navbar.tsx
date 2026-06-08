@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { contacts } from "@/app/data/ContactsData";
 
@@ -17,6 +18,8 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathDebounce = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     const initialHash = window.location.hash;
@@ -26,26 +29,37 @@ export default function Navbar() {
     }
 
     const handleScroll = () => {
-      const navY = 20;
-      const sectionIds = ["home", "experience", "education", "tech-stack"];
-      let current = "home";
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= navY) {
-          current = id;
+      const scrollY = window.scrollY;
+      const sections = [
+        { id: "experience", path: "/#experience" },
+        { id: "education", path: "/#education" },
+        { id: "tech-stack", path: "/#tech-stack" },
+      ];
+
+      let current = { id: "home", path: "/" };
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + scrollY;
+        if (scrollY >= top - 30) {
+          current = section;
         }
       }
-      setIsDark(darkSections.has(current));
-      const el = document.getElementById(current);
-      const path = current === "home" ? "/" : (el?.getAttribute("data-path") ?? "/");
-      window.history.replaceState(null, "", path);
+
+      setIsDark(darkSections.has(current.id));
+      if (pathDebounce.current) clearTimeout(pathDebounce.current);
+      pathDebounce.current = setTimeout(() => {
+        router.replace(current.path, { scroll: false });
+      }, 150);
     };
+    handleScroll(); // run once on mount
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (pathDebounce.current) clearTimeout(pathDebounce.current);
     };
-  }, []);
+  }, [router]);
 
   // close dropdown on outside click
   useEffect(() => {

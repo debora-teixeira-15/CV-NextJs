@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="relative">
       <Navbar />
-      <div id="home" data-path="/" className="sticky top-0 h-full bg-stone-50 font-sans">
+      <div id="home" className="sticky top-0 h-full bg-stone-50 font-sans">
         <Header />
       </div>
       <div className="relative bg-stone-50 font-sans">
