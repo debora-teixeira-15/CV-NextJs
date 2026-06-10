@@ -44,7 +44,7 @@ export default function WorkExperience() {
     <section ref={sectionRef} className="relative py-20 w-full bg-zinc-800 overflow-hidden">
       {/* Background ghost year — tracks active card position */}
       <span
-        className="pointer-events-none select-none absolute text-[14rem] font-bold leading-none text-white/[0.06] transition-all duration-700 -translate-y-1/2"
+        className="hidden lg:block pointer-events-none select-none absolute text-[14rem] font-bold leading-none text-white/[0.06] transition-all duration-700 -translate-y-1/2"
         style={{
           top: ghostY,
           left: activeIndex % 2 === 0 ? "52%" : "2%",
@@ -53,14 +53,14 @@ export default function WorkExperience() {
         {Object.values(experiences)[activeIndex].date.match(/\d{4}/)?.[0]}
       </span>
 
-      <p className="text-3xl font-light tracking-[0.3em] text-white/80 px-20 pb-10">
+      <p className="text-3xl font-light tracking-[0.3em] text-white/80 px-6 lg:px-20 pb-10">
         WORK EXPERIENCE
       </p>
 
       {/* Central Line */}
-      <div className="absolute left-1/2 top-40 h-350 w-[1px] bg-white/10 transform -translate-x-1/2" />
+      <div className="hidden lg:block absolute left-1/2 top-40 h-350 w-[1px] bg-white/10 transform -translate-x-1/2" />
 
-      <div className="mt-20 space-y-32 px-20">
+      <div className="hidden lg:block mt-20 space-y-32 px-20">
         {Object.values(experiences).map((exp, index) => {
           const isLeft = index % 2 === 0;
           const isActive = index === activeIndex;
@@ -108,6 +108,31 @@ export default function WorkExperience() {
             </div>
           );
         })}
+      </div>
+
+      {/* Mobile timeline */}
+      <div className="lg:hidden relative mt-8 px-6 pb-4">
+        <div className="absolute left-7 top-0 bottom-0 w-px bg-white/20" />
+        <div className="space-y-10">
+          {Object.values(experiences).map((exp, index) => {
+            const year = exp.date.match(/\d{4}/)?.[0];
+
+            return (
+              <div key={index} className="relative pl-10">
+                <div className="absolute left-[1.1rem] top-2 h-2.5 w-2.5 rounded-full bg-white" />
+                <p className="text-xs tracking-widest text-white/60 mb-3">{year}</p>
+                <div className="rounded-xl border border-white/15 bg-white/[0.03] p-5">
+                  <h3 className="text-2xl font-semibold text-white leading-tight">{exp.title}</h3>
+                  <p className="italic text-white/50 text-sm mt-1">{exp.company}</p>
+                  <p className="text-xs text-white/35 mt-1 tracking-wide">{exp.date}</p>
+                  <p className="mt-3 text-[1rem] text-white/70 leading-relaxed">
+                    {exp.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
