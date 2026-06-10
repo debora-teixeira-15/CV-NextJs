@@ -19,7 +19,7 @@ export default function Home() {
         <div
           id="education"
           data-path="/#education"
-          className="flex w-full justify-center pt-30 pb-20 gap-40 h-[75vh]"
+          className="flex flex-col md:flex-row w-full justify-center pt-30 pb-20 gap-20 lg:gap-40 lg:h-[75vh] overflow-x-hidden"
         >
           <Education />
           <Certifications />

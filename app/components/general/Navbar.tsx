@@ -16,8 +16,10 @@ const darkSections = new Set(["experience", "tech-stack"]);
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [contactsOpen, setContactsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const contactsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathDebounce = useRef<ReturnType<typeof setTimeout>>(null);
 
@@ -64,8 +66,11 @@ export default function Navbar() {
   // close dropdown on outside click
   useEffect(() => {
     const handleOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+      if (contactsRef.current && !contactsRef.current.contains(e.target as Node)) {
+        setContactsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleOutside, { passive: true });
@@ -74,6 +79,8 @@ export default function Navbar() {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setMenuOpen(false);
+    setContactsOpen(false);
     if (href === "#home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
@@ -88,37 +95,77 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-end items-center gap-10 px-5 py-4">
-      {links.map(({ label, href }) => (
-        <Link
-          key={href}
-          href={href}
-          onClick={(e) => handleClick(e, href)}
-          className={`text-sm tracking-widest uppercase transition-colors duration-300 ${textClass}`}
-        >
-          {label}
-        </Link>
-      ))}
-
-      {/* Contact dropdown */}
-      <div ref={dropdownRef} className="relative">
-        <button
-          onClick={() => setDropdownOpen((v) => !v)}
-          className={`text-sm tracking-widest uppercase transition-colors duration-300 cursor-pointer text-zinc-400 hover:text-zinc-600`}
-        >
-          Contacts
-        </button>
-        {dropdownOpen && (
-          <div
-            className={`absolute right-0 mt-3 text-right flex flex-col gap-1 py-2 min-w-[130px]`}
+      {/* Desktop links */}
+      <div className="hidden md:flex items-center gap-10">
+        {links.map(({ label, href }) => (
+          <Link
+            key={href}
+            href={href}
+            onClick={(e) => handleClick(e, href)}
+            className={`text-sm tracking-widest uppercase transition-colors duration-300 ${textClass}`}
           >
+            {label}
+          </Link>
+        ))}
+
+        {/* Contact dropdown (desktop) */}
+        <div ref={contactsRef} className="relative">
+          <button
+            onClick={() => setContactsOpen((v) => !v)}
+            className="text-sm tracking-widest uppercase transition-colors duration-300 cursor-pointer text-zinc-400 hover:text-zinc-600"
+          >
+            Contacts
+          </button>
+          {contactsOpen && (
+            <div className="absolute right-0 mt-3 text-right flex flex-col gap-1 py-2 min-w-[130px]">
+              {contacts.map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  onClick={() => setContactsOpen(false)}
+                  className="text-sm tracking-widest uppercase py-1 transition-colors duration-200 text-zinc-400 hover:text-zinc-600"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile hamburger */}
+      <div ref={menuRef} className="md:hidden relative">
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className={`text-xl transition-colors duration-300 ${textClass}`}
+        >
+          ☰
+        </button>
+        {menuOpen && (
+          <div
+            className={`absolute right-0 mt-3 flex flex-col gap-1 py-3 px-5 rounded-lg shadow-lg min-w-[160px] text-right ${isDark ? "bg-zinc-800 border border-white/10" : "bg-white border border-zinc-100"}`}
+          >
+            {links.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={(e) => handleClick(e, href)}
+                className={`text-sm tracking-widest uppercase py-1 transition-colors duration-200 ${textClass}`}
+              >
+                {label}
+              </Link>
+            ))}
+            <div className="my-1 border-t border-zinc-200" />
             {contacts.map(({ label, href }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                onClick={() => setDropdownOpen(false)}
-                className={`text-sm tracking-widest uppercase py-1 transition-colors duration-200 text-zinc-400 hover:text-zinc-600`}
+                onClick={() => setMenuOpen(false)}
+                className="text-sm tracking-widest uppercase py-1 transition-colors duration-200 text-zinc-400 hover:text-zinc-600"
               >
                 {label}
               </a>

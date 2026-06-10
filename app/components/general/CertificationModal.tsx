@@ -22,7 +22,7 @@ export default function CertificadoModal({ file }: Props) {
       {/* PREVIEW */}
       <div
         onClick={() => setOpen(true)}
-        className="w-full h-[232px] cursor-pointer overflow-hidden rounded-md border shadow hover:shadow-lg transition"
+        className="w-76 md:w-full h-[232px] cursor-pointer overflow-hidden rounded-md border shadow hover:shadow-lg transition"
       >
         <Document file={file}>
           <Page pageNumber={1} width={300} />
