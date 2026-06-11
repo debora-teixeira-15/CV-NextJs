@@ -57,7 +57,7 @@ export default function Header() {
               <div className="flex flex-col-reverse gap-1">
                 <dt className="text-base/7 text-gray-600">Years of work experience</dt>
                 <dd className="text-4xl font-semibold tracking-tight text-gray-800">
-                  <Counter number={5} />
+                  <Counter number={new Date().getFullYear() - 2021} />
                 </dd>
               </div>
               <div className="flex flex-col-reverse gap-1">
