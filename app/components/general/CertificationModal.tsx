@@ -14,7 +14,7 @@ interface Props {
   file: string;
 }
 
-export default function CertificadoModal({ file }: Props) {
+export default function CertificationModal({ file }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
