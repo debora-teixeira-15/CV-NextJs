@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -14,18 +14,37 @@ interface Props {
   file: string;
 }
 
-export default function CertificadoModal({ file }: Props) {
+export default function CertificationModal({ file }: Props) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
     <>
       {/* PREVIEW */}
       <div
         onClick={() => setOpen(true)}
-        className="w-76 md:w-full h-[232px] cursor-pointer overflow-hidden rounded-md border shadow hover:shadow-lg transition"
+        className="w-full min-w-[260px] sm:min-w-[320px] md:min-w-[340px] max-w-[420px] h-[260px] md:h-[280px] cursor-pointer overflow-hidden rounded-md border shadow hover:shadow-lg transition flex items-center justify-center bg-gray-50"
       >
-        <Document file={file}>
-          <Page pageNumber={1} width={300} />
+        <Document file={file} className="w-full h-full flex items-center justify-center">
+          <Page
+            pageNumber={1}
+            width={600}
+            renderTextLayer={false}
+            renderAnnotationLayer={false}
+            className="w-full h-full flex items-center justify-center [&_canvas]:!w-full [&_canvas]:!h-full [&_canvas]:!object-cover"
+          />
         </Document>
       </div>
 
